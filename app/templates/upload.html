@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Archivo</title>
+</head>
+<body>
+    <h2>Subir Archivo</h2>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label for="file">Seleccione un archivo:</label>
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Subir archivo">
+    </form>
+    
+</body>
+</html>

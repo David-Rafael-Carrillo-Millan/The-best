@@ -1,0 +1,103 @@
+{% extends './base.html' %}
+
+{% block title %} Inicio de Sesión {% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+{% endblock %}
+
+{% block body %}
+<body class="body">
+    <!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-flex align-items-center fixed-top box">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+        <div class="align-items-center d-none d-md-flex">
+            <i class="bi bi-clock"></i> Envio a todas las partes del mundo
+        </div>
+        <div class="d-flex align-items-center">
+            <i class="bi bi-phone"></i> Llamanos +52 7772758095
+        </div>
+    </div>
+  </div>
+
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+      <img src="{{ url_for('static', filename='img/LOGO2.png')}}" alt="">
+      <nav class="navbar navbar-expand-lg navbar-light"></nav>
+  </div>
+</header>
+<!-- --------------------------------------------------------- -->
+
+<div class="container separar">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-6" style="text-align: left;">
+      <div class="nombre">
+        <img src="{{ url_for('static', filename='img/LOGO-GRIS.png')}}" alt="">
+        <p></p>
+        <p>
+          ¡Descubre una amplia selección de libros para todos los gustos y edades! 
+          Desde clásicos de la literatura hasta las últimas novedades, tenemos algo para cada lector ávido de aventuras, romance, misterio o
+          cualquier otro género que puedas imaginar. Sumérgete en las páginas de nuestros libros y deja que te transporten a mundos fascinantes 
+          llenos de emociones y experiencias inolvidables. Explora nuestra colección y encuentra tu próxima lectura favorita.
+        </p>
+      </div>
+    </div>
+    <!-- DIV DONDE SE ENCUENTRA EL FORM -->
+    
+    <div class="col-md-12 col-sm-12 col-lg-6">
+      <div class="card shadow-2-strong forma" style="border-radius: 1rem">
+        <div class="card-body p-4 text-center">
+          <h1 class="h3 mb-5 fw-normal">Inicio de Sesi&oacute;n</h1>
+          
+          <form class="form-signin" action="/login" method="POST" name="login" id="login">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="form-outline mb-4">
+            <input type="text" class="form-control form-control-lg" id="usuario" name="usuario" placeholder="Usuario"/>
+          </div>
+          <div class="form-outline mb-4">
+            <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password"/>
+          </div>
+            <button class="btn-custom2" type="submit">Iniciar Sesi&oacute;n</button>
+            <hr />
+            <a href="/registrar" class="btn btn-custom">Crear cuenta nueva</a>
+        </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<div>
+    {% with messages = get_flashed_messages(with_categories = True) %}
+
+    {% if messages %}
+    <br />
+    {% for category, message in messages %}
+
+    {% if category == 'warning' %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong style="font-size: 14px;">{{ message }}</strong>
+      </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong style="font-size: 14px;">{{ message }}</strong>
+    </div>
+    <br />
+    {% endif %}
+
+    {% endfor %}
+    {% endif %}
+
+    {% endwith %}
+</div>
+</body>
+
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/login.js')}}"></script>
+{% endblock %}
+
+{% endblock %}
